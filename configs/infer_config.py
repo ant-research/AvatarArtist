@@ -1,0 +1,10 @@
+image_encoder_path = "./pretrained_model/image_encoder"
+vae_triplane_config_path = "DiT_VAE/diffusion/configs/vae_model.yaml"
+std_dir = './pretrained_model/final_std.pt'
+mean_dir = './pretrained_model/final_mean.pt'
+vae_pretrained = "./pretrained_model/checkpoint-VAE"
+motion_aware_render_model_ckpt = './pretrained_model/render.pkl'
+DiT_model_ckpt = './pretrained_model/DiT.pth'
+ws_avg_pkl = './pretrained_model/ws_avg.pkl'
+dino_pretrained = './pretrained_model/dinov2-base'
+scale_factor = 0.3994218

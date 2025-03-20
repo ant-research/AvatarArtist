@@ -1,0 +1,53 @@
+experiment: 'head-gallery512'
+cfg: ''
+outdir: '/input/liuhongyu/training-runs-portrait4d-all-train'
+gpus: 8
+batch: 32
+kimg: 15000
+g_module: 'recon.training.reconstructor.triplane_reconstruct_gallery.TriPlaneReconstructorNeutralize'
+d_module: 'recon.training.discriminator.dual_discriminator_next3D.DualDiscriminator'
+glr: 1e-4
+dlr: 1e-4
+g_has_superresolution: True
+g_has_background: False
+g_flame_full: False
+g_num_blocks_neutral: 4
+g_num_blocks_motion: 4
+g_motion_map_layers: 2
+d_has_superresolution: False
+d_has_uv: False
+d_has_seg: False
+patch_scale: 1.0
+use_ws_ones: False             # If true, ws==one for superresolution
+use_flame_mot: False           # If true, use flame parameters as motion embedding
+truncation_psi: 0.7           # Truncation rate for GenHead synthesized data
+cross_lr_scale: 1.0            # Learning rate scaling factor for motion-related layers
+static: False                  # If true, disable all motion-control and learn static 3d reconstruction model instead
+snap: 10
+density_reg_every: 4
+neural_rendering_resolution_initial: 128
+#neural_rendering_resolution_final: 128
+
+data: '/input/datasets/triplane_4d/refine/multi_style_zip.zip'
+
+gan_model_base_dir: '/input/datasets/triplane_4d/refine/gan_models'
+resume_syn: './configs/gan_model_video.yaml'    # Checkpoint of pre-trained GenHead for training data synthesis
+vae_pretrained:  "/input/datasets/triplane_4d/refine/models/VAE"
+render_pretrain: "/input/datasets/triplane_4d/refine/models/ani3dgan512.pkl"
+data_label_path: '/input/datasets/triplane_4d/refine/final_multy_style.json'
+
+label_file_vfhq: '/input/datasets/triplane_4d/refine/vfhq/dataset_realcam.json'
+label_file_ffhq: '/input/datasets/triplane_4d/refine/ffhq/dataset_realcam.json'
+
+mesh_path_ffhq: "/input/datasets/triplane_4d/refine/orthRender256x256_face_eye_ffhq.zip"
+mesh_path_ffhq_label : '/input/datasets/triplane_4d/refine/ffhq/ffhq_verts.json'
+motion_path_ffhq: "/input/datasets/triplane_4d/refine/ffhq/all_ffhq_motions.npy"
+
+mesh_path_vfhq: "/input/datasets/triplane_4d/refine/orthRender256x256_face_eye_vfhq.zip"
+mesh_path_vfhq_label : '/input/datasets/triplane_4d/refine/vfhq/vfhq_verts.json'
+motion_path_vfhq: "/input/datasets/triplane_4d/refine/vfhq/all_vfhq_motions.npy"
+
+vae_triplane_config: './configs/DIT/vae_model_training.yaml'
+
+encoder_weights: '/input/datasets/triplane_4d/refine/models/resnet34-333f7ec4.pth'
+

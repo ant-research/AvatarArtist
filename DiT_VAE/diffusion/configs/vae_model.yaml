@@ -1,0 +1,24 @@
+embed_dim: 8
+ddconfig:
+  double_z: True
+  z_channels: 8
+  encoder:
+    target: DiT_VAE.vae.aemodules3d.Encoder
+    params:
+      n_hiddens: 128
+      downsample: [4, 8, 8]
+      image_channel: 32
+      norm_type: group
+      padding_type: replicate
+      double_z: True
+      z_channels: 8
+
+  decoder:
+    target: DiT_VAE.vae.aemodules3d.Decoder
+    params:
+      n_hiddens: 128
+      upsample: [4, 8, 8]
+      z_channels: 8
+      image_channel: 32
+      norm_type: group
+
