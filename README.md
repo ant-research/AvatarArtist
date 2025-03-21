@@ -7,9 +7,16 @@
         [CVPR 2025] AvatarArtist: Open-Domain 4D Avatarization
     </a>
 </h2>
-<div align="center">
-    <img src="docs/teaser.gif" width="850px">
-</div>
+
+<p align="center">
+<img alt="avatarrtist" src="docs/teaser.mp4" width="60%">
+</p>
+
+[//]: # (<div align="center">)
+
+[//]: # (    <img src="docs/teaser.gif" width="350px">)
+
+[//]: # (</div>)
 
 <h5 align="center"> If you like our project, please give us a star ⭐ on GitHub for the latest update. </h5>
 
@@ -71,7 +78,7 @@ pip install -r requirements.txt
 
 ### Download Weights
 
-The weights are available at [🤗HuggingFace](https://huggingface.co/BestWishYsh/ConsisID-preview), you can download it with the following commands.
+The weights are available at [🤗HuggingFace](https://huggingface.co/BestWishYsh/ConsisID-preview), you can download it with the following commands. Please move the required files into the `pretrained_model` directory:
 
 ```bash
 # if you are in china mainland, run this first: export HF_ENDPOINT=https://hf-mirror.com
