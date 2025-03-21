@@ -9,7 +9,7 @@
 </h2>
 
 <p align="center">
-<img alt="avatarrtist" src="docs/teaser.gif" width="60%">
+<img alt="avatarrtist" src="docs/teaser.gif" width="80%">
 </p>
 
 [//]: # (<div align="center">)
@@ -31,7 +31,7 @@
         <img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-blue'>
     </a>
     <a href="https://github.com/ant-research/AvatarArtist">
-        <img src="https://img.shields.io/github/stars/a/IP-Adapter?style=social">
+    <img src="https://img.shields.io/github/stars/ant-research/AvatarArtist?style=social" alt="GitHub stars">
     </a>
 </h5>
 
