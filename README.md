@@ -1,4 +1,4 @@
-<div style="text-align:center;">
+<div align="center">
     <img src="docs/AvatarArtist.ico" width="150px">
 </div>
 
@@ -7,7 +7,7 @@
         [CVPR 2025] AvatarArtist: Open-Domain 4D Avatarization
     </a>
 </h2>
-<div style="text-align:center;">
+<div align="center">
     <img src="docs/teaser.gif">
 </div>
 
