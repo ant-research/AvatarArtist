@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="docs/AvatarArtist.ico" width="150px">
+    <img src="docs/AvatarArtist.ico" width="250px">
 </div>
 
 <h2 align="center">
@@ -8,7 +8,7 @@
     </a>
 </h2>
 <div align="center">
-    <img src="docs/teaser.gif">
+    <img src="docs/teaser.gif" width="350px">
 </div>
 
 <h5 align="center"> If you like our project, please give us a star ⭐ on GitHub for the latest update. </h5>
@@ -85,7 +85,7 @@ KUMAPOWER/AvatarArtist \
 
 ### Inference
 <div align="center">
-  <img src="docs/avatarartist_infer_overview.gif"  />
+  <img src="docs/avatarartist_infer_overview.gif"  width="450px" />
   <p>
     <em>
       Our approach consists of two steps during the inference process.First, the DiT model generates a 4D representation based on the input image.Then, our Motion-Aware Cross-Domain Renderer takes this 4D representation as input and,<br>
