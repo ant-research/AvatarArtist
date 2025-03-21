@@ -84,7 +84,7 @@ The weights are available at [🤗HuggingFace](https://huggingface.co/BestWishYs
 # if you are in china mainland, run this first: export HF_ENDPOINT=https://hf-mirror.com
 huggingface-cli download --repo-type model \
 KUMAPOWER/AvatarArtist \
---local-dir ckpts
+--local-dir pretrained_model
 ```
 
 
@@ -95,8 +95,7 @@ KUMAPOWER/AvatarArtist \
   <img src="docs/avatarartist_infer_overview.gif"  width="850px" />
   <p>
     <em>
-      Our approach consists of two steps during the inference process.First, the DiT model generates a 4D representation based on the input image.Then, our Motion-Aware Cross-Domain Renderer takes this 4D representation as input and,<br>
-      guided by both the input image and driving signals, renders it into the final target image.
+    Our approach consists of two steps during the inference process. First, the DiT model generates a 4D representation based on the input image. Then, our Motion-Aware Cross-Domain Renderer takes this 4D representation as input and, guided by both the input image and driving signals, renders it into the final target image.
     </em>
   </p>
 </div>
@@ -124,10 +123,13 @@ python3 inference.py \
 ``` 
 
 
-### Custom Data Process
-We provide a set of scripts to process input images and videos to be used as inputs for our model. These scripts ensure that the data is properly formatted and preprocessed, making it compatible with our inference pipeline. You can use them to prepare your own custom data for generating results with our model.
-Please refer to [this guide](https://github.com/ant-research/AvatarArtist/tree/main/data_process) for how to obtain the  inference data. You can also see the [demo data](https://github.com/ant-research/HeadArtist/tree/main/demo_data) for reference. The data structure is shown below. 
-The files in the "dataset" folder serve as the final input to the model, while the other files are intermediate outputs from the data processing pipeline:
+### Custom Data Processing
+
+We provide a set of scripts to process input images and videos for use with our model. These scripts ensure that the data is properly formatted and preprocessed, making it compatible with our inference pipeline. You can use them to prepare your own custom data for generating results with our model.  
+
+Please refer to [this guide](https://github.com/ant-research/AvatarArtist/tree/main/data_process) to learn how to obtain the inference data. You can also check the [demo data](https://github.com/ant-research/HeadArtist/tree/main/demo_data) for reference. The data structure is shown below.  
+
+The files in the `"dataset"` folder serve as the final input to the model, while the other files are intermediate outputs from the data processing pipeline：
 
 ```
 📦 datasets/
