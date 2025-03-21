@@ -9,7 +9,7 @@
 </h2>
 
 <p align="center">
-<img alt="avatarrtist" src="docs/teaser.mp4" width="60%">
+<img alt="avatarrtist" src="docs/teaser.gif" width="60%">
 </p>
 
 [//]: # (<div align="center">)
