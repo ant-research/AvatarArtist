@@ -663,23 +663,16 @@ def training_loop(
         with torch.no_grad():
             for cur_z_val, cur_exp_out_val, cur_c_val, model_list_out_val, ref_tri_val in \
                     zip(cur_z_vals, cur_exp_out_vals, cur_c_vals, model_list_out_vals, ref_tri_vals):
-                kkkk = kkkk + 1
-                # print(' model_list_out_val',  model_list_out_val)
                 syn_out = loss.gen_data_by_G_next3D(cur_z_val, cur_exp_out_val, cur_c_val, model_list_out_val)
                 ref_tri_tri = Rendering.gen_triplane(ref_tri_val, cur_exp_out_val[:,2])
                 ref_imgs_out = Rendering.get_img_with_tri(ref_tri_tri, syn_out['c'][:,2])
                 grid_c_recon.append(syn_out['c'][:,2])
-                # torch.save(syn_out['c'][:,2].detach().cpu(), f'/nas5/liuhongyu/dataset_video/dataset/val/c_val_{kkkk}.pt')
                 out.append(syn_out)
                 ref_out.append(ref_imgs_out)
 
         grid_c_recon.append(torch.load(config_vae_triplane['syn_out_c_path']).to(device))
         images_all = torch.cat([o['image_sr'] for o in out], dim=0)
-        # torch.save(images_all.detach().cpu(), '/nas5/liuhongyu/dataset_video/dataset/val/images_all.pt')
-        # images_all = torch.load(config_vae_triplane['images_all_path']).to(device)
         ref_imgs_all_val = torch.cat(ref_out, dim=0)
-        # torch.save(ref_imgs_all_val.detach().cpu(), '/nas5/liuhongyu/dataset_video/dataset/val/ref_imgs_all_val.pt')
-        # ref_imgs_all_val = torch.load(config_vae_triplane['ref_imgs_all_val_path']).to(device)
         images_all = images_all.reshape(-1, 3, *images_all.shape[-3:])
         images_app_val = images_all[:, 0]
         images_mot_val = images_all[:, 1]
