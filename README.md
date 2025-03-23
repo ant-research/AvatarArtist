@@ -71,14 +71,14 @@
 ```bash
 git clone --depth=1 https://github.com/ant-research/AvatarArtist 
 cd AvatarArtist
-conda create -n consisid_data python=3.9.0
+conda create -n avatarartist python=3.9.0
 conda activate avatarartist
 pip install -r requirements.txt
 ```
 
 ### Download Weights
 
-The weights are available at [🤗HuggingFace](https://huggingface.co/BestWishYsh/ConsisID-preview), you can download it with the following commands. Please move the required files into the `pretrained_model` directory:
+The weights are available at [🤗HuggingFace](https://huggingface.co/KumaPower/AvatarArtist), you can download it with the following commands. Please move the required files into the `pretrained_model` directory:
 
 ```bash
 # if you are in china mainland, run this first: export HF_ENDPOINT=https://hf-mirror.com

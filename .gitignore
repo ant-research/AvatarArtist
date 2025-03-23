@@ -1,6 +1,5 @@
 # Byte-compiled / optimized / DLL files
 ckpts*
-consisid_finetune_single_rank*
 gradio_tmp*
 output*
 logs*

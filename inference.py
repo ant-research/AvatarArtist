@@ -386,7 +386,7 @@ if __name__ == '__main__':
     model_path = "./pretrained_model"
     if not os.path.exists(model_path):
         logging.info("📥 Model not found. Downloading from Hugging Face...")
-        snapshot_download(repo_id="BestWishYsh/ConsisID-preview", local_dir=model_path)
+        snapshot_download(repo_id="KumaPower/AvatarArtist", local_dir=model_path)
         logging.info("✅ Model downloaded successfully!")
     else:
         logging.info("🎉 Pretrained model already exists. Skipping download.")
