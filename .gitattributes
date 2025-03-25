@@ -1,1 +1,4 @@
 *.gif filter=lfs diff=lfs merge=lfs -text
+data_process/lib/FaceVerse/v3/faceverse_v3_1.npy filter=lfs diff=lfs merge=lfs -text
+data_process/lib/faceverse_process/BgMatting_models/rvm_resnet50_fp32.torchscript filter=lfs diff=lfs merge=lfs -text
+data_process/lib/faceverse_process/metamodel/v3/faceverse_v3_1.npy filter=lfs diff=lfs merge=lfs -text
