@@ -3,7 +3,7 @@
 </div>
 
 <h2 align="center">
-    <a href="https://arxiv.org/abs/2411.17440">
+    <a href="./docs/AvatarArtist.pdf">
         [CVPR 2025] AvatarArtist: Open-Domain 4D Avatarization
     </a>
 </h2>
@@ -24,7 +24,7 @@
     <a href='https://kumapowerliu.github.io/AvatarArtist'>
         <img src='https://img.shields.io/badge/Project-Page-green'>
     </a> 
-    <a href='https://arxiv.org/abs/2308.06721'>
+    <a href='./docs/AvatarArtist.pdf'>
         <img src='https://img.shields.io/badge/Technique-Report-red'>
     </a> 
     <a href='https://huggingface.co/KUMAPOWER/AvatarArtist'>
