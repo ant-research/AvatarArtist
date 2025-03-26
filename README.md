@@ -62,7 +62,7 @@
 </details>
 
 ## 🚨 News
-- [03/20/2025] Inference Code and pretrained models released!
+- [03/26/2025] Inference Code and pretrained models released!
 
 ## ⚙️ Setup
 
