@@ -3,7 +3,7 @@
 </div>
 
 <h2 align="center">
-    <a href="./docs/AvatarArtist.pdf">
+    <a href="https://arxiv.org/abs/2503.19906">
         [CVPR 2025] AvatarArtist: Open-Domain 4D Avatarization
     </a>
 </h2>
@@ -24,7 +24,7 @@
     <a href='https://kumapowerliu.github.io/AvatarArtist'>
         <img src='https://img.shields.io/badge/Project-Page-green'>
     </a> 
-    <a href='./docs/AvatarArtist.pdf'>
+    <a href='https://arxiv.org/abs/2503.19906'>
         <img src='https://img.shields.io/badge/Technique-Report-red'>
     </a> 
     <a href='https://huggingface.co/KUMAPOWER/AvatarArtist'>
@@ -183,7 +183,7 @@ We sincerely appreciate the contributions of the following open-source projects,
 ## ✏️ Citation
 If you make use of our work, please cite our paper.
 ```bibtex
-@article{liu2024avatarartist,
+@article{liu2025avatarartist,
   title={AvatarArtist: Open-Domain 4D Avatarization},
   author={Hongyu Liu, Xuan Wang, Ziyu Wan, Yue Ma, Jingye Chen, Yanbo Fan, Yujun Shen, Yibing Song, Qifeng Chen },
   booktitle={CVPR},
