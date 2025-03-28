@@ -193,7 +193,34 @@ def generate_samples(DiT_model, cfg_scale, sample_steps, clip_feature, dino_feat
 
     return samples
 
+def images_to_video(image_folder, output_video, fps=30):
+    # 获取所有图片文件，并确保顺序正确
+    images = [img for img in os.listdir(image_folder) if img.endswith((".png", ".jpg", ".jpeg"))]
+    images = natsorted(images)  # 按文件名排序，确保帧顺序
 
+    if not images:
+        print("❌ 目录中没有找到图片！")
+        return
+
+    # 获取 FFmpeg 可执行文件路径
+    ffmpeg_exe = ffmpeg.get_ffmpeg_exe()
+    print(f"Using FFmpeg from: {ffmpeg_exe}")
+
+    # 生成输入文件路径（确保格式为 "%04d.png"）
+    image_pattern = os.path.join(image_folder, "%04d.png")
+
+    # FFmpeg 命令
+    command = [
+        ffmpeg_exe, '-framerate', str(fps), '-i', image_pattern,
+        '-c:v', 'libx264', '-preset', 'slow', '-crf', '18',  # 高质量 H.264 编码
+        '-pix_fmt', 'yuv420p', '-b:v', '5000k',  # 改善颜色兼容性，增加比特率
+        output_video
+    ]
+
+    # 运行 FFmpeg
+    subprocess.run(command, check=True)
+
+    print(f"✅ 高质量 MP4 视频已生成: {output_video}")
 @torch.inference_mode()
 def avatar_generation(items, bs, sample_steps, cfg_scale, save_path_base, DiT_model, render_model, std, mean, ws_avg,
                       Faceverse, pitch_range=0.25, yaw_range=0.35, demo_cam=False):
@@ -303,8 +330,8 @@ def avatar_generation(items, bs, sample_steps, cfg_scale, save_path_base, DiT_mo
             Image.fromarray(final_out, 'RGB').save(os.path.join(save_frames_path_out, frame_name))
 
         # Generate videos
-        video_gen(save_frames_path_combine, os.path.join(save_path_base, image_name + '_combine.mp4'))
-        video_gen(save_frames_path_out, os.path.join(save_path_base, image_name + '_out.mp4'))
+        images_to_video(save_frames_path_combine, os.path.join(save_path_base, image_name + '_combine.mp4'))
+        images_to_video(save_frames_path_out, os.path.join(save_path_base, image_name + '_out.mp4'))
         logging.info(f"✅ Video generation completed successfully!")
         logging.info(f"📂 Combined video saved at: {os.path.join(save_path_base, image_name + '_combine.mp4')}")
         logging.info(f"📂 Output video saved at: {os.path.join(save_path_base, image_name + '_out.mp4')}")
