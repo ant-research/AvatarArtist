@@ -194,33 +194,33 @@ def generate_samples(DiT_model, cfg_scale, sample_steps, clip_feature, dino_feat
     return samples
 
 def images_to_video(image_folder, output_video, fps=30):
-    # 获取所有图片文件，并确保顺序正确
+    # Get all image files and ensure correct order
     images = [img for img in os.listdir(image_folder) if img.endswith((".png", ".jpg", ".jpeg"))]
-    images = natsorted(images)  # 按文件名排序，确保帧顺序
+    images = natsorted(images)  # Sort filenames naturally to preserve frame order
 
     if not images:
-        print("❌ 目录中没有找到图片！")
+        print("❌ No images found in the directory!")
         return
 
-    # 获取 FFmpeg 可执行文件路径
+    # Get the path to the FFmpeg executable
     ffmpeg_exe = ffmpeg.get_ffmpeg_exe()
     print(f"Using FFmpeg from: {ffmpeg_exe}")
 
-    # 生成输入文件路径（确保格式为 "%04d.png"）
+    # Define input image pattern (expects images named like "%04d.png")
     image_pattern = os.path.join(image_folder, "%04d.png")
 
-    # FFmpeg 命令
+    # FFmpeg command to encode video
     command = [
         ffmpeg_exe, '-framerate', str(fps), '-i', image_pattern,
-        '-c:v', 'libx264', '-preset', 'slow', '-crf', '18',  # 高质量 H.264 编码
-        '-pix_fmt', 'yuv420p', '-b:v', '5000k',  # 改善颜色兼容性，增加比特率
+        '-c:v', 'libx264', '-preset', 'slow', '-crf', '18',  # High-quality H.264 encoding
+        '-pix_fmt', 'yuv420p', '-b:v', '5000k',              # Ensure compatibility & increase bitrate
         output_video
     ]
 
-    # 运行 FFmpeg
+    # Run FFmpeg command
     subprocess.run(command, check=True)
 
-    print(f"✅ 高质量 MP4 视频已生成: {output_video}")
+    print(f"✅ High-quality MP4 video has been generated: {output_video}")
 @torch.inference_mode()
 def avatar_generation(items, bs, sample_steps, cfg_scale, save_path_base, DiT_model, render_model, std, mean, ws_avg,
                       Faceverse, pitch_range=0.25, yaw_range=0.35, demo_cam=False):
@@ -325,7 +325,7 @@ def avatar_generation(items, bs, sample_steps, cfg_scale, save_path_base, DiT_mo
             output_img_combine = np.hstack((img_ref_out, exp_img, final_out))
 
             # Save output images
-            frame_name = f'{str(frame_index).zfill(5)}.png'
+            frame_name = f'{str(frame_index).zfill(4)}.png'
             Image.fromarray(output_img_combine, 'RGB').save(os.path.join(save_frames_path_combine, frame_name))
             Image.fromarray(final_out, 'RGB').save(os.path.join(save_frames_path_out, frame_name))
 
