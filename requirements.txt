@@ -25,10 +25,12 @@ gdown==5.2.0
 plyfile==1.0.3
 natsort
 mmcv==1.7.0
-pip3 install -U xformers==0.0.22.post3  --index-url https://download.pytorch.org/whl/cu118
-torchvision==0.16.1
+xformers==0.0.22.post3
+https://download.pytorch.org/whl/cu121/torch-2.1.1%2Bcu121-cp39-cp39-linux_x86_64.whl
+https://download.pytorch.org/whl/cu121/torchvision-0.16.1%2Bcu121-cp39-cp39-linux_x86_64
 git+https://github.com/facebookresearch/pytorch3d.git@v0.7.4
 matplotlib==3.9.1.post1
 mediapipe
 open_clip
 imageio_ffmpeg
+spaces

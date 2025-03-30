@@ -1,9 +1,13 @@
+import os.path
+
 from .yacs import CfgNode as CN
 import argparse
-import os
-import numpy as np
-import pprint
+from pathlib import Path
 
+current_file = Path(__file__).resolve()
+
+project_root = current_file.parent.parent.parent.parent
+cfg_path = os.path.join(project_root, 'data_process/configs/pipeline_config_demo.yaml')
 
 def parse_cfg(cfg, args):
     """Transfer command line arguments to configuration node"""
@@ -35,6 +39,13 @@ def make_cfg(args):
 
     # Override with command line arguments
     parse_cfg(cfg, args)
+    cfg.model.facerecon.checkpoints_dir = os.path.join(project_root, cfg.model.facerecon.checkpoints_dir)
+    cfg.model.fd.model_path = os.path.join(project_root, cfg.model.fd.model_path)
+    cfg.model.ldmk.model_path= os.path.join(project_root, cfg.model.ldmk.model_path)
+    cfg.model.ldmk_3d.model_path = os.path.join(project_root, cfg.model.ldmk_3d.model_path)
+    cfg.model.ldmk_3d.model_depth_path = os.path.join(project_root, cfg.model.ldmk_3d.model_depth_path)
+    cfg.pdfgc_path = os.path.join(project_root, cfg.pdfgc_path)
+
     return cfg
 
 
@@ -48,7 +59,7 @@ parser.add_argument("--save_dir", default='', type=str,
                     help="Output directory for processed results")
 
 # Configuration file
-parser.add_argument("--cfg_file", default="configs/pipeline_config1.yaml", type=str,
+parser.add_argument("--cfg_file", default=cfg_path, type=str,
                     help="Path to YAML configuration file")
 
 # Processing mode flags

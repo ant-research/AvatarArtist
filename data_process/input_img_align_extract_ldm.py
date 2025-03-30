@@ -6,7 +6,6 @@ import glob
 import logging
 import argparse
 from datetime import datetime
-
 import cv2
 import torch
 import numpy as np

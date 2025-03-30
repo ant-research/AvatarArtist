@@ -23,19 +23,19 @@ model:
     use_last_fc: False
     init_path: ""
     isTrain: False
-    checkpoints_dir: "../pretrained_model/data_process_model/facerecon"
+    checkpoints_dir: "pretrained_model/data_process_model/facerecon"
     pretrained_name: "deep3d_2023"
     epoch: 20
     phase: "test"
     use_ddp: False
     parallel_names: ['net_recon']
-    bfm_folder: "../pretrained_model/data_process_model/facerecon/bfm"
+    bfm_folder: "pretrained_model/data_process_model/facerecon/bfm"
   # fd network
   fd:
     model_name: "retinaface"
     model_type: "fd"
     model_cls: "faceDetector"
-    model_path: "../pretrained_model/data_process_model/facedetect/retinaface/Resnet50_Final.pth"
+    model_path: "pretrained_model/data_process_model/facedetect/retinaface/Resnet50_Final.pth"
     thres: 0.8
     nms_thres: 0.4
     img_size: 640
@@ -64,7 +64,7 @@ model:
     model_name: "h3r"
     model_type: "ldmk"
     model_cls: "ldmkDetector"
-    model_path: "../pretrained_model/data_process_model/hrnet_w18_wflw/h3r/model.pth"
+    model_path: "pretrained_model/data_process_model/hrnet_w18_wflw/h3r/model.pth"
     img_size: 256
 
   # ldmk 3d network
@@ -72,7 +72,7 @@ model:
     model_name: "ldmk3d"
     model_type: "ldmk"
     model_cls: "ldmk3dDetector"
-    model_path: "../pretrained_model/data_process_model/landmark3d/3DFAN4-4a694010b9.zip"
-    model_depth_path: "../pretrained_model/data_process_model/landmark3d/depth-6c4283c0e0.zip"
+    model_path: "pretrained_model/data_process_model/landmark3d/3DFAN4-4a694010b9.zip"
+    model_depth_path: "pretrained_model/data_process_model/landmark3d/depth-6c4283c0e0.zip"
     img_size: 256
-pdfgc_path: "../pretrained_model/data_process_model/pdfgc/weights/motion_model.pth"
+pdfgc_path: "pretrained_model/data_process_model/pdfgc/weights/motion_model.pth"

@@ -1,3 +1,5 @@
+import os.path
+
 import pytorch3d.transforms
 import torch
 from torch import nn
@@ -22,8 +24,10 @@ from pytorch3d.loss import (
     mesh_laplacian_smoothing,
     # mesh_normal_consistency,
 )
+from pathlib import Path
 
-
+current_file = Path(__file__).resolve()
+project_root = current_file.parent.parent.parent.parent
 
 class MeshRendererWithDepth(MeshRenderer):
     def __init__(self, rasterizer, shader):
@@ -126,7 +130,7 @@ class FaceVerseModel(nn.Module):
         self.idBase = (idBase * 0.1).reshape(-1, 150)
         self.expr_52 = expr_52
         if expr_52:
-            expBase = torch.tensor(np.load('lib/faceverse_process/metamodel/v3/exBase_52.npy').reshape(-1, 3, 52), dtype=torch.float32, requires_grad=False, device=self.device)
+            expBase = torch.tensor(np.load(os.path.join(project_root, 'lib/faceverse_process/metamodel/v3/exBase_52.npy')).reshape(-1, 3, 52), dtype=torch.float32, requires_grad=False, device=self.device)
         else:
             expBase = torch.tensor(model_dict['exBase'].reshape(-1, 3, 171), dtype=torch.float32, requires_grad=False, device=self.device)
         expBase[:, [1, 2]] *= -1
@@ -136,7 +140,7 @@ class FaceVerseModel(nn.Module):
         self.l_eyescale = model_dict['left_eye_exp']
         self.r_eyescale = model_dict['right_eye_exp']
         # self.vert_mask = model_dict['face_mask']
-        self.vert_mask = np.load('lib/faceverse_process/metamodel/v31_face_mask_new.npy')
+        self.vert_mask = np.load(os.path.join(project_root,'lib/faceverse_process/metamodel/v31_face_mask_new.npy'))
         self.vert_mask[model_dict['ver_inds'][0]:model_dict['ver_inds'][2]] = 1
         self.vert_mask = torch.tensor(self.vert_mask).view(1, -1, 1).to(self.device)
 
