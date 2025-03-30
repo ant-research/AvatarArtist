@@ -62,6 +62,7 @@
 </details>
 
 ## 🚨 News
+- [03/30/2025] Gradio demo released!
 - [03/26/2025] Inference Code and pretrained models released!
 
 ## ⚙️ Setup
@@ -87,6 +88,18 @@ KUMAPOWER/AvatarArtist \
 --local-dir pretrained_model
 ```
 
+## 🚀 Demo
+
+Welcome to our demo! 🎉  
+This project provides an easy-to-use interface to explore and experience our core features.
+
+### 🔧 Quick Start
+
+After installing the necessary dependencies, simply run the following command to launch the demo:
+
+```python
+python3 app.py
+```
 
 ## 🤗 Usage
 
@@ -123,6 +136,7 @@ python3 inference.py \
 ``` 
 
 
+
 ### Custom Data Processing
 
 We provide a set of scripts to process input images and videos for use with our model. These scripts ensure that the data is properly formatted and preprocessed, making it compatible with our inference pipeline. You can use them to prepare your own custom data for generating results with our model.  
@@ -156,12 +170,12 @@ We provide a set of scripts to transfer the realistic domain's portrait to the o
 
 ## **📋 To-Do List**
 ### **Pending Tasks**
-- [ ] Gradio demo
 - [ ] Release training code
 
 ---
 
 ### **✅ Completed Tasks**
+- [x] Gradio demo
 - [x] Release inference code  
 - [x] Release data processing tools  
 - [x] Release the pipeline to generate input for different domains
