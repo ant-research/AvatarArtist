@@ -5,7 +5,6 @@ output*
 logs*
 taming*
 samples*
-datasets*
 asset*
 temp_samples*
 wandb*

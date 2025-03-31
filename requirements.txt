@@ -1,4 +1,4 @@
-transformers==4.34.1
+# Other Python dependencies
 scipy==1.13.1
 scikit-image==0.21.0
 scikit-learn==1.2.2
@@ -9,14 +9,13 @@ PyYAML==6.0.2
 tqdm==4.67.1
 absl-py==2.1.0
 tensorboard==2.17.0
-tensorboardX==2.6.1
 PyOpenGL==3.1.0
 pyrender==0.1.45
 trimesh==3.22.0
 click==8.1.7
 omegaconf==2.2.3
 segmentation_models_pytorch
-timm
+timm==1.0.15
 psutil==5.9.5
 lmdb==1.4.1
 einops==0.8.1
@@ -25,12 +24,18 @@ gdown==5.2.0
 plyfile==1.0.3
 natsort
 mmcv==1.7.0
-xformers==0.0.22.post3
-https://download.pytorch.org/whl/cu121/torch-2.1.1%2Bcu121-cp39-cp39-linux_x86_64.whl
-https://download.pytorch.org/whl/cu121/torchvision-0.16.1%2Bcu121-cp39-cp39-linux_x86_64
-git+https://github.com/facebookresearch/pytorch3d.git@v0.7.4
+xformers==0.0.28
 matplotlib==3.9.1.post1
 mediapipe
-open_clip
+open-clip-torch
 imageio_ffmpeg
 spaces
+transformers==4.41.2
+diffusers==0.29.2
+# Install torch & torchvision from specific CUDA-enabled wheels (CUDA 12.1, Python 3.10)
+https://download.pytorch.org/whl/cu121/torch-2.4.1%2Bcu121-cp310-cp310-linux_x86_64.whl
+https://download.pytorch.org/whl/cu121/torchvision-0.19.1%2Bcu121-cp310-cp310-linux_x86_64.whl
+
+# PyTorch3D from custom index
+-f https://dl.fbaipublicfiles.com/pytorch3d/packaging/wheels/py310_cu121_pyt241/download.html
+pytorch3d
