@@ -699,7 +699,7 @@ def launch_gradio_app():
         )
         gr.HTML(
             """
-            <div style="text-align: left; font-size: 16px; line-height: 1.6; margin-top: 20px; padding: 10px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+            <div style="color: inherit; text-align: left; font-size: 16px; line-height: 1.6; margin-top: 20px; padding: 16px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.1); background-color: rgba(240, 240, 240, 0.6); backdrop-filter: blur(2px);">
                 <strong>🧑‍🎨 How to use this demo:</strong>
                 <ol style="margin-top: 10px; padding-left: 20px;">
                     <li><strong>Select or upload a source image</strong> – this will be the avatar's face.</li>
@@ -931,6 +931,8 @@ if __name__ == '__main__':
         sd_path, torch_dtype=torch.float16, text_encoder=text_encoder,
         use_safetensors=True, controlnet=controlnet, variant="fp16"
     ).to(device)
+    pipeline_sd.scheduler=DPMSolverMultistepScheduler.from_config(pipeline_sd.scheduler_config, use_karras_sigmas=True)  
+
     demo_cam = False
     base_coff = np.load(
     'pretrained_model/temp.npy').astype(
