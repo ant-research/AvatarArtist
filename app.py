@@ -267,10 +267,33 @@ def prepare_working_dir(dir, style):
         working_dir = tempfile.TemporaryDirectory()
         return working_dir.name
 
-
 def launch_pretrained():
-    from huggingface_hub import hf_hub_download, snapshot_download
-    hf_hub_download(repo_id="KumaPower/AvatarArtist", repo_type='model', local_dir="./pretrained_model")
+    from huggingface_hub import snapshot_download
+    snapshot_download(
+        repo_id="KumaPower/AvatarArtist",
+        repo_type="model",
+        local_dir="./pretrained_model",
+        local_dir_use_symlinks=False
+    )
+
+    snapshot_download(
+        repo_id="stabilityai/stable-diffusion-2-1-base",
+        repo_type="model",
+        local_dir="./pretrained_model/sd21",
+        local_dir_use_symlinks=False
+    )
+    logging.info("delete models.")
+
+    os.remove('./pretrained_model/sd21/v2-1_512-ema-pruned.ckpt')
+    os.remove('./pretrained_model/sd21/v2-1_512-nonema-pruned.ckpt')
+
+    # 下载 CrucibleAI/ControlNetMediaPipeFace 的所有文件
+    snapshot_download(
+        repo_id="CrucibleAI/ControlNetMediaPipeFace",
+        repo_type="model",
+        local_dir="./pretrained_model/control",
+        local_dir_use_symlinks=False
+    )
 
 
 def prepare_image_list(img_dir, selected_img):
@@ -886,20 +909,32 @@ def launch_gradio_app():
 
 if __name__ == '__main__':
     import torch.multiprocessing as mp
-
+    import transformers
     mp.set_start_method('spawn', force=True)
-    image_folder = "./demo_data/source_img/img_generate_different_domain/images512x512/trained_input_imgs"
+    launch_pretrained()
+    image_folder = "./demo_data/source_img/img_generate_different_domain/images512x512/demo_imgs"
     example_img_names = os.listdir(image_folder)
     render_model, sample_steps, DiT_model, \
-        vae_triplane, image_encoder, dinov2, dino_img_processor, clip_image_processor, std, mean, ws_avg, Faceverse, device, input_process_model = model_define()
-    controlnet_path = '/nas8/liuhongyu/model/ControlNetMediaPipeFaceold'
+        vae_triplane, image_encoder, dinov2, dino_img_processor, clip_image_processor, std, mean, ws_avg,  device, input_process_model = model_define()
+    controlnet_path = './pretrained_model/control'
     controlnet = ControlNetModel.from_pretrained(
         controlnet_path, torch_dtype=torch.float16
     )
-    sd_path =  '/nas8/liuhongyu/model/stable-diffusion-2-1-base'
+    sd_path =  './pretrained_model/sd21'
+    text_encoder = transformers.CLIPTextModel.from_pretrained(
+            sd_path,
+            subfolder="text_encoder",
+            num_hidden_layers=12 - (2 - 1),
+            torch_dtype=torch.float16
+        )    
     pipeline_sd = StableDiffusionControlNetImg2ImgPipeline.from_pretrained(
-        sd_path, torch_dtype=torch.float16,
+        sd_path, torch_dtype=torch.float16, text_encoder=text_encoder,
         use_safetensors=True, controlnet=controlnet, variant="fp16"
     ).to(device)
     demo_cam = False
+    base_coff = np.load(
+    'pretrained_model/temp.npy').astype(
+    np.float32)
+    base_coff = torch.from_numpy(base_coff).float()
+    Faceverse = Faceverse_manager(device=device, base_coeff=base_coff)
     launch_gradio_app()
