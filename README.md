@@ -30,6 +30,9 @@
     <a href='https://huggingface.co/KUMAPOWER/AvatarArtist'>
         <img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-blue'>
     </a>
+    <a href='https://huggingface.co/spaces/KumaPower/AvatarArtist' target="_blank">
+    <img src='https://img.shields.io/badge/🚀 Try%20on%20HuggingFace-blue?logo=huggingface&logoColor=white' alt='Hugging Face Demo'>
+    </a>
     <a href="https://github.com/ant-research/AvatarArtist">
     <img src="https://img.shields.io/github/stars/ant-research/AvatarArtist?style=social" alt="GitHub stars">
     </a>
