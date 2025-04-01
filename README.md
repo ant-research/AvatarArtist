@@ -65,7 +65,7 @@
 </details>
 
 ## 🚨 News
-- [04/02/2025] online demo released! [Try it!!!!]🚀🚀🚀🔥🔥🔥(https://huggingface.co/spaces/KumaPower/AvatarArtist)
+- [04/02/2025] online demo released! [Try it!!!!](https://huggingface.co/spaces/KumaPower/AvatarArtist) 🚀🚀🚀🔥🔥🔥
 - [03/30/2025] Gradio demo released!
 - [03/26/2025] Inference Code and pretrained models released!
 
