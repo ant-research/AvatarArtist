@@ -931,7 +931,7 @@ if __name__ == '__main__':
         sd_path, torch_dtype=torch.float16, text_encoder=text_encoder,
         use_safetensors=True, controlnet=controlnet, variant="fp16"
     ).to(device)
-    pipeline_sd.scheduler=DPMSolverMultistepScheduler.from_config(pipeline_sd.scheduler_config, use_karras_sigmas=True)  
+    pipeline_sd.scheduler=DPMSolverMultistepScheduler.from_config(pipeline_sd.scheduler.config, use_karras_sigmas=True)  
 
     demo_cam = False
     base_coff = np.load(
