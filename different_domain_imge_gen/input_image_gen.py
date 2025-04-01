@@ -86,8 +86,14 @@ class DomainImageGeneration:
             self._load_lora(pipeline, "detail-tweaker-lora/add_detail.safetensors")
 
         elif model_name == "stable-diffusion-2-1-base":
+            text_encoder = transformers.CLIPTextModel.from_pretrained(
+                self.diffusion_checkpoint_path,
+                subfolder="text_encoder",
+                num_hidden_layers=12 - (clip_skip - 1),
+                torch_dtype=torch.float16
+            )
             pipeline = StableDiffusionControlNetImg2ImgPipeline.from_pretrained(
-                self.diffusion_checkpoint_path, torch_dtype=torch.float16,
+                self.diffusion_checkpoint_path, torch_dtype=torch.float16, text_encoder=text_encoder,
                 use_safetensors=True, controlnet=controlnet, variant="fp16"
             ).to(self.device)
 
